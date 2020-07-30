@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args){
         //making the neural network
-        int[] neuralNetworkArchitecture = {1,1,1,1};
+        int[] neuralNetworkArchitecture = {2,2,1};
         NeuralNetwork nn = new NeuralNetwork(neuralNetworkArchitecture, (z)->{
             z = z.copy();
             for(int i = 0;i<z.getRowDimension();i++){
@@ -20,9 +20,13 @@ public class Main {
             return z;
         });
 
-        double[][] data = DataHelper.makeData(10, 1, 1, 1);
+        double[][] data = DataHelper.makeData(10, 2, 1, 1);
 
         RealMatrix X = MatrixUtils.createRealMatrix(data);
+
+        X = nn.compute(X);
+        MatrixHelper.printMatrix(X);
+
 
     }
 }

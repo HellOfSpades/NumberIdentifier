@@ -1,5 +1,6 @@
 package hellofspades.all.neuralnetwork;
 
+import org.apache.commons.math.linear.MatrixUtils;
 import org.apache.commons.math.linear.RealMatrix;
 
 public class Layer {
@@ -14,7 +15,15 @@ public class Layer {
     }
 
     RealMatrix compute(RealMatrix X){
-        return X;
+        //the array is an inverse of the final matrix so the computing can be easier.
+        double[][] outputdata = new double[neurons.length][X.getRowDimension()];
+
+        for(int i = 0;i<neurons.length;i++){
+            outputdata[i] = neurons[i].compute(X).getColumn(0);
+        }
+
+
+        return MatrixUtils.createRealMatrix(outputdata).transpose();
     }
 
 }

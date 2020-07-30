@@ -22,7 +22,6 @@ public class Neuron {
     }
 
     RealMatrix compute(RealMatrix X){
-
         lastoutput = activation.function(X.multiply(theta.transpose()));
         return  lastoutput.copy();
     }

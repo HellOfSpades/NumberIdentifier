@@ -20,9 +20,10 @@ public abstract class MatrixHelper {
         System.out.println("");
         for(int i = 0;i<matrix.getRowDimension();i++){
             for(int n = 0;n<matrix.getColumnDimension();n++){
-                System.out.print(matrix.getEntry(i,n)+"\t");
+                System.out.print(matrix.getEntry(i,n)+"\t\t");
             }
             System.out.println("");
+            System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
 

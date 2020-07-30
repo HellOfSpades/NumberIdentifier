@@ -22,10 +22,9 @@ public class NeuralNetwork {
 
     public RealMatrix compute(RealMatrix X){
         for(int i = 0;i<layers.length;i++){
-            MatrixHelper.printMatrix(X);
             X = MatrixHelper.adOnes(X);
             MatrixHelper.printMatrix(X);
-            //X = layers[i].compute(X);
+            X = layers[i].compute(X);
         }
         return X;
 
