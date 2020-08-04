@@ -10,23 +10,23 @@ public class Main {
 
     public static void main(String[] args){
         //making the neural network
-        int[] neuralNetworkArchitecture = {2,2,1};
-        NeuralNetwork nn = new NeuralNetwork(neuralNetworkArchitecture, (z)->{
-            z = z.copy();
-            for(int i = 0;i<z.getRowDimension();i++){
-                z.setEntry(i,0,1/(1+Math.exp(-z.getEntry(i,0))));
-            }
+        int[] neuralNetworkArchitecture = {2,3,2,1};
+        NeuralNetwork nn = new NeuralNetwork(neuralNetworkArchitecture);
 
-            return z;
+        //make a bunch of random data values
+        double[][] data = DataHelper.makeData(10, 2, 0, 5);
+        //use a formula to make a bunch of Y values for the data
+        double[][] Ydata = DataHelper.makeY(data,(X)->{
+            double[] y = {X[0]*5+X[1]*3+3};
+            return y;
         });
 
-        double[][] data = DataHelper.makeData(10, 2, 1, 1);
-
         RealMatrix X = MatrixUtils.createRealMatrix(data);
-
-        X = nn.compute(X);
-        MatrixHelper.printMatrix(X);
-
+        RealMatrix Y = MatrixUtils.createRealMatrix(Ydata);
+        //X = nn.compute(X);
+        //MatrixHelper.printMatrix(X);
+        //MatrixHelper.printMatrix(Y);
+        nn.learn(X,Y);
 
     }
 }

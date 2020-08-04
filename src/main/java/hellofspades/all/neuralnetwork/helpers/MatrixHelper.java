@@ -27,6 +27,19 @@ public abstract class MatrixHelper {
         }
     }
 
+    //moltiplies two matrices of equal size by having each of their elemnts be moltiplied by the corresponding from the other
+    public static RealMatrix moltiplyEachElement(RealMatrix x1, RealMatrix x2){
+        RealMatrix output = MatrixUtils.createRealMatrix(x1.getRowDimension(),x1.getColumnDimension());
+
+        for(int i = 0;i<x1.getRowDimension();i++){
+            for(int n = 0;n<x1.getColumnDimension();n++){
+                output.setEntry(i,n,x1.getEntry(i,n)*x2.getEntry(i,n));
+            }
+        }
+
+        return output;
+    }
+
     //ads a coulomn of ones as as the first coulumn of the matrix
     public static RealMatrix adOnes(RealMatrix matrix){
         RealMatrix output = MatrixUtils.createRealMatrix(matrix.getRowDimension(),matrix.getColumnDimension()+1);
