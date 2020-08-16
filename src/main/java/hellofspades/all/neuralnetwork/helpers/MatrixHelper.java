@@ -20,7 +20,7 @@ public abstract class MatrixHelper {
         System.out.println("");
         for(int i = 0;i<matrix.getRowDimension();i++){
             for(int n = 0;n<matrix.getColumnDimension();n++){
-                System.out.print(matrix.getEntry(i,n)+"\t\t");
+                System.out.print(matrix.getEntry(i,n)+"\t\t\t\t");
             }
             System.out.println("");
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
@@ -53,5 +53,38 @@ public abstract class MatrixHelper {
 
         return output;
 
+    }
+
+    //sets every element to be a log of its og self
+    public static RealMatrix logEachElement(RealMatrix matrix){
+        RealMatrix output = MatrixUtils.createRealMatrix(matrix.getRowDimension(),matrix.getColumnDimension());
+        for(int i = 0;i<matrix.getRowDimension();i++){
+            for(int n = 0;n<matrix.getColumnDimension();n++){
+                output.setEntry(i,n,Math.log(matrix.getEntry(i,n)));
+            }
+        }
+        return output;
+    }
+
+    //sets each ellement of the matrix to that element to "power" power
+    public static RealMatrix power(RealMatrix matrix, double power){
+        RealMatrix output = MatrixUtils.createRealMatrix(matrix.getRowDimension(),matrix.getColumnDimension());
+        for(int i = 0;i<matrix.getRowDimension();i++){
+            for(int n = 0;n<matrix.getColumnDimension();n++){
+                output.setEntry(i,n,Math.pow(matrix.getEntry(i,n),power));
+            }
+        }
+        return output;
+    }
+
+    //returns the sum of all elements in a matrix
+    public static double sum(RealMatrix matrix){
+        double sum = 0;
+        for(int i = 0;i<matrix.getRowDimension();i++){
+            for(int n = 0;n<matrix.getColumnDimension();n++){
+                sum+=matrix.getEntry(i,n);
+            }
+        }
+        return  sum;
     }
 }
