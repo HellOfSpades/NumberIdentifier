@@ -14,10 +14,10 @@ public class Main {
         NeuralNetwork nn = new NeuralNetwork(neuralNetworkArchitecture);
 
         //make a bunch of random data values
-        double[][] data = DataHelper.makeData(1000, 2, 0, 5);
+        double[][] data = DataHelper.makeData(10000, 2, 0, 5);
         //use a formula to make a bunch of Y values for the data
         double[][] Ydata = DataHelper.makeY(data,(X)->{
-            double[] y = {X[0]*5+X[1]*3+3};
+            double[] y = {(X[1]<=X[0]*5+3)?0:1};
             return y;
         });
         RealMatrix X = MatrixUtils.createRealMatrix(data);
@@ -28,7 +28,7 @@ public class Main {
         MatrixHelper.printMatrix(Y);
 
 
-        for(int i = 0;i<10;i++){
+        for(int i = 0;i<1000000000;i++){
             System.out.println("cost at run "+i+" is :"+nn.learn(X,Y));
         }
 
